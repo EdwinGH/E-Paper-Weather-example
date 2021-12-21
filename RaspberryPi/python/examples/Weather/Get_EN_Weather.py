@@ -197,10 +197,15 @@ class Weather:
     def Extract_OtherData(self):
         Other_Data_t = ''.join(re.findall(r'\W*<ul>[\s\S]*?</ul>', self.Weather_Info))
         Other_Data_t = re.sub('</ul>', '', re.sub('<ul>', '', Other_Data_t))
+        logging.debug("Other_Data_t: %s", Other_Data_t)
         Other_Data_t = re.sub('</span>', '', re.sub('<li><span>', '', Other_Data_t))
+        logging.debug("Other_Data_t: %s", Other_Data_t)
         Other_Data_t = re.sub('&#176', ' degrees', re.sub('</li>', '#', Other_Data_t))
-        Other_Data_t = re.sub(r'[^A-Za-z0-9% -#.]', '', Other_Data_t)
+        logging.debug("Other_Data_t: %s", Other_Data_t)
+        Other_Data_t = re.sub(r'[^A-Za-z0-9% \-/#.]', '', Other_Data_t)
+        logging.debug("Other_Data_t: %s", Other_Data_t)
         Other_Data   = re.split('#', Other_Data_t)
+        logging.debug("Other_Data: %s", Other_Data)
         return Other_Data
 
     def Extract_Map(self):
