@@ -1,9 +1,5 @@
-﻿# 12.48inch e-paper Module + 12.48inch e-paper Module (B)
-## waveshare electronics
-![waveshare_logo.png](waveshare_logo.png)
-http://www.waveshare.net  
-https://www.waveshare.com  
+# Weather display for 7 and 12 inch Waveshare e-paper screen 
 
-![12in48-epaper-weather1.jpg](12in48-epaper-weather1.jpg)
-![12in48-epaper-weather2.jpg](12in48-epaper-weather2.jpg)
+Thanks to https://www.waveshare.com for providing great E-Paper screens and a simple connection to Raspberry Pi.
 
+(more to follow)
