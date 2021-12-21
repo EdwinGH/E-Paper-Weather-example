@@ -4,8 +4,8 @@
 * | Function    :   Help with use
 * | Info        :
 *----------------
-* |	This version:   V1.0
-* | Date        :   2019-06-25
+* |	This version:   V1.0 EdwinGH
+* | Date        :   2021-12-21
 * | Info        :   Here is an English version of the documentation for your quick use.
 ******************************************************************************/
 This file is to help you use this routine.
@@ -39,65 +39,24 @@ EPD_M2_BUSY_PIN   -> 27
 EPD_S2_BUSY_PIN   -> 24
 
 3. Basic use:
-C language
-     1. Install the library
-         BCM2835 library see: http://www.airspayce.com/mikem/bcm2835/
-         WiringPi library see: http://wiringpi.com/download-and-install/
-         Note: For Raspberry Pi 4, the WiringPi library needs to be updated to version 2.52 or above.
-
-     2. Change the current directory to the location of the Makefile and demo files.
-     3. Compile the file:
-             If you need to view the debug information, clear the execution:
-                 Make DEBUG = -DDEBUG
-             Using different libraries needs to be modified in the Makefile
-                 # USELIB = USE_BCM2835_LIB
-                 USELIB = USE_WIRINGPI_LIB
-                 # USELIB = USE_DEV_LIB
-             Note: USE_DEV_LIB is a read file IO control device, which is slow but does not require any libraries to be installed.
-             In this example, it is not recommended to use USE_DEV_LIB, and the analog SPI and file control IO port is extremely slow.
-    4. Run the demo routine
-         Run: sudo ./epd
 
 Python
-    1. Install the library
-        Because Python calls the C language library to speed up data transfer
-        So you need to install the corresponding GPIO library and the WiringPi library in C language.
-            Sudo python3 -m pip install requests
-    2. Run the demo routine
-        There are 4 routines in the python/examples folder that all support python2/3
-        Test code
-            If it is a 12.48 e-Paper screen please run
-                Run: sudo python epd_12in48_test.py
-                Run: sudo python3 epd_12in48_test.py
-            If it is 12.48 e-Paper (B) screen please run
-                Run: sudo python epd_12in48b_test.py
-                Run: sudo python3 epd_12in48b_test.py
-        Extension code
             This program needs to connect to the network
-            Show_CN_Weather.py and Show_EN_Weather.py both show weather programs and need to connect to the network.
+            Show_EN_Weather.py both show weather programs and need to connect to the network.
             So make sure your Raspberry Pi connects to the Internet before using it:
-                Run: sudo python Show_CN_Weather.py help
                 Run: sudo python Show_EN_Weather.py help
             Can see help information
-            If you are using 12.48inch e-Paper (B), please add a B parameter after the command.
-                Sudo python Show_CN_Weather.py B
-                Sudo python Show_EN_Weather.py B
-             If you use the 12.48inch e-Paper, you don't need to add
-                Sudo python Show_CN_Weather.py
-                Sudo python Show_EN_Weather.py
-            Weather
-                In the Weather folder, Get_CN_Weather.py and Get_EN_Weather.py use two methods.
-                To get the weather, Get_CN_Weather.py uses the API mode, but only the weather in China.
-                Show_EN_Weather.py uses crawling webpage data to get global weather, both through IP
-                Address to determine the city.
-                Https://www.tianqiapi.com/
+
+Weather
+                In the Weather folder, Show_EN_Weather.py uses crawling webpage data to get global weather,
+                both through IP address to determine the city.
                 https://www.msn.com/en-us/Weather
 
 4. Statement
     This program is provided for educational purposes only and should not be used for any commercial purpose. If there is any infringement, please contact me to delete.
     Http://www.waveshare.net
+
 5. Python program analysis
-    Only two show programs are analyzed here.
     Find directory
         Picdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'pic')
         Libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
@@ -114,11 +73,3 @@ Python
         ALERT needs to be fixed immediately, such as a system database corruption.
         EMERGENCY In case of emergency, the system is not available (for example, the system crashes) and all users are generally notified.
         (You can try changing to logging.basicConfig(level=logging.DEBUG) to see what happened)
-
-    Input parameter list
-        Sys.argv[]
-
-    Access to internet data
-        Requests.get(Url, timeout=5)
-        Url: URL
-        Timeout: timeout
