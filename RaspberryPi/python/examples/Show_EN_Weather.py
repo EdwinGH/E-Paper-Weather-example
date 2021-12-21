@@ -13,9 +13,10 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG) # DEBUG or INFO or WARNING (default) or ERROR
 
-picdir = '/home/pi/E-Paper/pic'
-libdir = '/home/pi/E-Paper/lib'
+picdir = '../pic'
+libdir = '../lib'
 if os.path.exists(libdir):
+    logging.debug ('libdir: %s' % libdir)
     sys.path.append(libdir)
 
 from Weather import Get_EN_Weather
@@ -27,10 +28,10 @@ from PIL import ImageFont
 from PIL import ImageColor
 from PIL import Image
 
-logging.debug ('%d argument(s): %s' % (len(sys.argv), sys.argv))
+logging.debug ('%d argument(s): %s' % (len(sys.argv)-1, sys.argv))
 
 if(len(sys.argv) > 1 and sys.argv[1] == '12'):
-    from waveshare_epd import epd12in48
+    import epd12in48
     logging.info ('epd12in48')
     Color_Type   = 1
     Inage_WIDTH  = epd12in48.EPD_WIDTH
@@ -46,7 +47,7 @@ elif(len(sys.argv) > 1 and (sys.argv[1] == 'B' or sys.argv[1] == 'b')):
     epd = epd12in48b.EPD()
 
 elif(len(sys.argv) > 1 and (sys.argv[1] == '7B' or sys.argv[1] == '7b')):
-    from waveshare_epd import epd7in5b_V2
+    import epd7in5b_V2
     logging.info("Display type: epd7in5b_V2")
     Color_Type   = 2
     Inage_WIDTH  = epd7in5b_V2.EPD_WIDTH
@@ -259,9 +260,9 @@ Display()
 logging.debug("Display END:")
 Display_END()
 logging.debug("Save:")
-//Colorimage = Image.new("P", (Inage_WIDTH, Inage_HEIGHT), 255)
+#Colorimage = Image.new("P", (Inage_WIDTH, Inage_HEIGHT), 255)
 # putpalette() input is a sequence of [r, g, b, r, g, b, ...]
-//Colorimage.putpalette([0, 0, 0, 102, 102, 102, 176, 176, 176, 255, 255, 255])
+#Colorimage.putpalette([0, 0, 0, 102, 102, 102, 176, 176, 176, 255, 255, 255])
 
 
 logging.info("Done.")
