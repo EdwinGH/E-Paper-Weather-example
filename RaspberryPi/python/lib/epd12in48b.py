@@ -27,7 +27,7 @@
 # THE SOFTWARE.
 #
 import time
-import epdconfig
+from . import epdconfig
 
 EPD_WIDTH       = 1304
 EPD_HEIGHT      = 984
