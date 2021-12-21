@@ -11,12 +11,14 @@ import urllib
 import sys
 import logging
 
-logging.basicConfig(level=logging.DEBUG) # DEBUG or INFO or WARNING (default) or ERROR
+logging.basicConfig(level=logging.WARNING) # DEBUG or INFO or WARNING (default) or ERROR
 
-picdir = '../pic'
-libdir = '../lib'
+path = os.path.realpath(os.path.dirname(sys.argv[0]))
+
+picdir = path + '/../pic'
+libdir = path + '/../lib'
+logging.debug ('libdir: %s' % libdir)
 if os.path.exists(libdir):
-    logging.debug ('libdir: %s' % libdir)
     sys.path.append(libdir)
 
 from Weather import Get_EN_Weather
@@ -29,6 +31,10 @@ from PIL import ImageColor
 from PIL import Image
 
 logging.debug ('%d argument(s): %s' % (len(sys.argv)-1, sys.argv))
+
+if(len(sys.argv) > 2 and sys.argv[2] == 'debug'):
+    logging.getLogger().setLevel(logging.DEBUG)
+    logging.debug('Debugging ON')
 
 if(len(sys.argv) > 1 and sys.argv[1] == '12'):
     import epd12in48
@@ -55,9 +61,10 @@ elif(len(sys.argv) > 1 and (sys.argv[1] == '7B' or sys.argv[1] == '7b')):
     epd = epd7in5b_V2.EPD()
 
 else:
-    logging.info ('If you are using epd_12in48   please run: sudo python %s 12'  % sys.argv[0])
-    logging.info ('If you are using epd_12in48B  please run: sudo python %s 12b' % sys.argv[0])
-    logging.info ('If you are using epd_7in5b_V2 please run: sudo python %s  7b' % sys.argv[0])
+    print('If you are using epd_12in48   please run: python %s 12'  % sys.argv[0])
+    print('If you are using epd_12in48B  please run: python %s 12b' % sys.argv[0])
+    print('If you are using epd_7in5b_V2 please run: python %s  7b' % sys.argv[0])
+    print('And if you want to see mode debugging info, add debug to the end: python %s  7b debug' % sys.argv[0])
     sys.exit(0)
 
 logging.debug("Display Width = %i, Height = %i", Inage_WIDTH, Inage_HEIGHT)
