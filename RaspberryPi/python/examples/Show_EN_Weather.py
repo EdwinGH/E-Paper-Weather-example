@@ -194,16 +194,18 @@ for i in range(0, 24):
     temp[i]  = int(TemHourly[i])
 
 temp.sort()
-tem_max = int(temp[len(temp)-1]/3.0+1)*3
-tem_min = int(temp[0]/3)*3
-logging.debug("tem len -1 %f, max %i", temp[len(temp)-1], tem_max)
-logging.debug("tem      0 %f, min %i", temp[0], tem_min)
+if(temp[len(temp)-1] < 0): tem_max = int( temp[len(temp)-1]   /3.0)*3 # Note: int casting removes decimals, does not round...
+else:                      tem_max = int((temp[len(temp)-1]+2)/3.0)*3
+if(temp[0] < 0): tem_min = int((temp[0]-2)/3.0)*3
+else:            tem_min = int( temp[0]   /3.0)*3
+logging.debug("temp(len -1) %f, normalized max %i", temp[len(temp)-1], tem_max)
+logging.debug("temp(     0) %f, normalized min %i", temp[0], tem_min)
 tem_H_Proportion = int(H_Proportion/(tem_max - tem_min))
 tem_W_Proportion = int((Inage_WIDTH-50)/24)
 logging.debug("tem Height proportion %i", tem_H_Proportion)
 logging.debug("tem Width  proportion %i", tem_W_Proportion)
 
-# x,y Axes
+# X Axis
 if(tem_min<=0 and tem_max>=0):
   # Draw zero line
   logging.debug("Line: %i,%i to %i,%i", 50,Inage_HEIGHT-(30-tem_min*tem_H_Proportion),Inage_WIDTH-50,Inage_HEIGHT-(30-tem_min*tem_H_Proportion))
@@ -217,7 +219,7 @@ else:
 #    Black.line([(50,Inage_HEIGHT-30),(Inage_WIDTH-50,Inage_HEIGHT-30)],  fill = 0,width = 3)
 
 # Y axis
-Black.line([(50,Inage_HEIGHT-30),(50,Inage_HEIGHT-H_Proportion+20)], fill = 0,width = 3)
+Black.line([(50,Inage_HEIGHT-30),(50,Inage_HEIGHT-30-H_Proportion)], fill = 0,width = 3)
 # Arrows
 #Black.line([(Inage_WIDTH-50-5,Inage_HEIGHT-30-5),(Inage_WIDTH-50,Inage_HEIGHT-30)], fill = 0,width = 3)
 #Black.line([(Inage_WIDTH-50-5,Inage_HEIGHT-30+5),(Inage_WIDTH-50,Inage_HEIGHT-30)], fill = 0,width = 3)
