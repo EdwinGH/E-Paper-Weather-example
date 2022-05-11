@@ -22,7 +22,9 @@ picdir = '/home/pi/E-Paper/pic'
 #ur = 'https://www.msn.com/en-us/Weather/?day=1' # gives Fahrenheit
 #ur = 'https://www.msn.com/nl-nl/Weather/?day=1' # Does not work for parsing
 #ur = 'https://www.msn.com/en-us/Weather/?day=1&weadegreetype=C'
-ur =  'https://www.msn.com/en-us/Weather/today/Heeze,North-Brabant,Netherlands/we-city?iso=NL&weadegreetype=C'
+#ur = 'https://www.msn.com/en-us/Weather/today/Heeze,North-Brabant,Netherlands/we-city?iso=NL&weadegreetype=C'
+# MSN changed something, now starting with LAT LON URL which will be translated to city
+ur =  'https://www.msn.com/54/en-us/ct51.38,5.57?weadegreetype=C&iso=nl'
 
 #headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 headers = {'User-Agent': 'Wget/1.15 (linux-gnu)'}
